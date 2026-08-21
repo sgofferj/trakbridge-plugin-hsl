@@ -33,11 +33,11 @@ HSL_MQTT_PORT = 1883
 HFP_TOPIC_BASE = "/hfp/v2/journey/ongoing/vp"
 
 MODE_MAP = {
-    "tram": "a-f-G-E-V-L-T",
-    "metro": "a-f-G-E-V-L-R",
-    "train": "a-f-G-E-V-L",
+    "tram": "a-f-G-E-V-C-M",
+    "metro": "a-f-G-E-V-C-M",
+    "train": "a-f-G-E-V-C-M",
     "ferry": "a-f-S-X-C",
-    "bus": "a-f-G-E-V-C-M",
+    "bus": "a-f-G-E-V-C-M-H",
 }
 
 TRIP_LOCK_SECONDS = 30

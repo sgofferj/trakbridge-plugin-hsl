@@ -35,11 +35,11 @@ def test_matches_filter_wildcard_and_hsl_prefix():
 
 
 def test_mode_map():
-    assert MODE_MAP["tram"] == "a-f-G-E-V-L-T"
-    assert MODE_MAP["metro"] == "a-f-G-E-V-L-R"
-    assert MODE_MAP["train"] == "a-f-G-E-V-L"
+    assert MODE_MAP["tram"] == "a-f-G-E-V-C-M"
+    assert MODE_MAP["metro"] == "a-f-G-E-V-C-M"
+    assert MODE_MAP["train"] == "a-f-G-E-V-C-M"
     assert MODE_MAP["ferry"] == "a-f-S-X-C"
-    assert MODE_MAP["bus"] == "a-f-G-E-V-C-M"
+    assert MODE_MAP["bus"] == "a-f-G-E-V-C-M-H"
 
 
 def test_process_message_buffers_vehicle():
@@ -67,7 +67,7 @@ def test_process_message_buffers_vehicle():
     entry = list(plugin._buffer.values())[0]
     assert entry["uid"].startswith("HSL-metro-31M1-")
     assert entry["name"] == "HSL M1"
-    assert entry["cot_type"] == "a-f-G-E-V-L-R"
+    assert entry["cot_type"] == "a-f-G-E-V-C-M"
     assert entry["lat"] == 60.1710
     assert entry["lon"] == 24.9410
     assert entry["speed"] == 5.5
