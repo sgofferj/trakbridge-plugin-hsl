@@ -1,0 +1,54 @@
+name: Build Release Package
+
+on:
+  push:
+    branches:
+      - 'release-**'
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install Poetry
+        run: pipx install poetry
+      - name: Install build tools
+        run: pip install pyyaml
+      - name: Regenerate lock file
+        run: poetry lock
+      - name: Install dependencies
+        run: poetry install
+      - name: Lint
+        run: |
+          poetry run black --check plugin/ || true
+          poetry run mypy plugin/ || true
+          poetry run pylint plugin/ || true
+      - name: Test
+        run: poetry run pytest || true
+      - name: Build plugin package
+        run: python scripts/package_release.py
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: plugin-package
+          path: dist/
+      - name: Extract version from plugin.yaml
+        id: version
+        run: |
+          VERSION=$(python3 -c "import yaml; print(yaml.safe_load(open('plugin.yaml'))['version'])")
+          echo "version=$VERSION" >> "$GITHUB_OUTPUT"
+          echo "tag=v$VERSION" >> "$GITHUB_OUTPUT"
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: ${{ steps.version.outputs.tag }}
+          name: ${{ steps.version.outputs.tag }}
+          body: |
+            ## Changes
+            - Version ${{ steps.version.outputs.version }}
+          files: dist/*.tar.gz
