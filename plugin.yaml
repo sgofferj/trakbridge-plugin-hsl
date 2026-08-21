@@ -1,6 +1,6 @@
 id: hsl
 name: HSL Plugin
-version: "0.1.0"
+version: "0.1.1"
 entry_point: plugin/hsl.py
 class_name: HslPlugin
 description: "HSL (Helsinki regional transport) real-time vehicle tracking"

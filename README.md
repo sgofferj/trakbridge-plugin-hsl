@@ -28,6 +28,10 @@ Licensed under the Gnu General Public License Version 3 or higher.
 
 ## Changelog
 
+### 0.1.1
+- Lowered minimum poll interval to 1s.
+- Fixed CoT types: trams, metros and trains now use `a-f-G-E-V-C-M` (ATAK does not support civilian railway vehicles), buses `a-f-G-E-V-C-M-H`.
+
 ### 0.1.0
 - Initial release.
 - HFP MQTT subscription with targeted or global topic selection.

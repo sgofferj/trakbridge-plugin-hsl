@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "trakbridge-plugin-hsl"
-version = "0.1.0"
+version = "0.1.1"
 description = "HSL (Helsinki regional transport) plugin for TrakBridge"
 authors = ["Stefan Gofferje <stefan@gofferje.net>"]
 license = "GPL-3.0-or-later"
