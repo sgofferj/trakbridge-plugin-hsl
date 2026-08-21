@@ -89,7 +89,7 @@ class HslPlugin(BaseGPSPlugin):  # type: ignore[misc]
             "(Helsinki Regional Transport) vehicles via HFP MQTT",
             "icon": "fas fa-train-subway",
             "category": "custom",
-            "min_poll_interval": 5,
+            "min_poll_interval": 1,
             "hide_cot_type": True,
             "config_fields": [
                 PluginConfigField(
